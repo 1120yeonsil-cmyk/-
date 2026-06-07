@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Re:Pet - 세상을 떠난 반려동물의 추억을 AI로 재현하는 따뜻한 추모 앱">
+    <meta name="theme-color" content="#f5e6d3">
+    <title>Re:Pet - 반려동물 추모 앱</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🐾</text></svg>">
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">🌈 Re:Pet</h1>
+            <p class="tagline">사랑했던 반려동물, 다시 만나요</p>
+        </div>
+    </header>
+
+    <!-- 메인 컨테이너 -->
+    <main class="container">
+        <!-- 입력 섹션 -->
+        <section id="inputSection" class="section input-section active">
+            <div class="section-content">
+                <h2 class="section-title">추억을 재현해보세요</h2>
+                
+                <!-- 사진 업로드 -->
+                <div class="upload-area">
+                    <div class="upload-box">
+                        <input 
+                            type="file" 
+                            id="photoInput" 
+                            accept="image/*" 
+                            class="file-input"
+                        >
+                        <label for="photoInput" class="upload-label">
+                            <span class="upload-icon">📸</span>
+                            <span class="upload-text">반려동물의 사진을 업로드해주세요</span>
+                            <span class="upload-subtext">(JPG, PNG, GIF)</span>
+                        </label>
+                    </div>
+                    <div id="previewContainer" class="preview-container hidden">
+                        <img id="previewImage" src="" alt="미리보기" class="preview-image">
+                        <button id="removePhotoBtn" class="btn-remove">✕</button>
+                    </div>
+                </div>
+
+                <!-- 프롬프트 입력 -->
+                <div class="prompt-area">
+                    <label for="promptInput" class="input-label">어떤 행동을 보고 싶으신가요?</label>
+                    <textarea 
+                        id="promptInput" 
+                        class="prompt-input" 
+                        placeholder="예: 들판에서 뛰어노는 모습&#10;예: 햇빛이 비치는 창가에서 자는 모습&#10;예: 주인과 함께 산책하는 모습"
+                        rows="4"
+                    ></textarea>
+                    <div class="prompt-tips">
+                        <p>💡 팁: 더 자세한 프롬프트일수록 더 좋은 결과를 얻을 수 있습니다.</p>
+                    </div>
+                </div>
+
+                <!-- 생성 버튼 -->
+                <button id="generateBtn" class="btn-primary" disabled>
+                    <span class="btn-icon">✨</span>
+                    <span class="btn-text">추억 생성하기</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 결과 섹션 -->
+        <section id="resultSection" class="section result-section hidden">
+            <div class="section-content">
+                <button id="backBtn" class="btn-back">← 돌아가기</button>
+                
+                <div class="result-container">
+                    <!-- 생성된 이미지 -->
+                    <div class="result-image-area">
+                        <div id="generatedImage" class="generated-image">
+                            <div class="image-loading hidden">
+                                <div class="spinner"></div>
+                                <p>추억을 재현 중입니다...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 메시지 -->
+                    <div class="result-message">
+                        <p id="resultText" class="message-text"></p>
+                    </div>
+
+                    <!-- 돌봄 기능 섹션 -->
+                    <div class="care-section">
+                        <h3 class="care-title">계속 돌봐주세요 💕</h3>
+                        <div class="care-buttons">
+                            <button id="feedBtn" class="btn-care">
+                                <span class="care-icon">🍖</span>
+                                <span class="care-label">먹이주기</span>
+                            </button>
+                            <button id="bathBtn" class="btn-care">
+                                <span class="care-icon">🛁</span>
+                                <span class="care-label">목욕시키기</span>
+                            </button>
+                            <button id="cheerBtn" class="btn-care">
+                                <span class="care-icon">💬</span>
+                                <span class="care-label">응원 메시지</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 돌봄 반응 메시지 -->
+                    <div id="careResponse" class="care-response hidden">
+                        <p id="careMessage" class="care-message"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <p>🌸 세상을 떠난 모든 반려동물을 추모합니다 🌸</p>
+    </footer>
+
+    <!-- 응원 메시지 모달 -->
+    <div id="messageModal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close">✕</button>
+            <h3 class="modal-title">응원 메시지를 남겨주세요</h3>
+            <textarea 
+                id="cheerInput" 
+                class="modal-input" 
+                placeholder="반려동물에게 하고 싶은 말씀을 적어주세요"
+                rows="5"
+            ></textarea>
+            <button id="submitCheerBtn" class="btn-primary">메시지 전송</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
